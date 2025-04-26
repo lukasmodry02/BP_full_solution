@@ -1,9 +1,13 @@
-# Version control
+# =============================
+# .dockerignore for C#/.NET projects
+# =============================
+
+# 1. Version control
 .git/
 .gitignore
 .gitattributes
 
-# IDE and editor folders/files
+# 2. IDE and editor settings
 .idea/
 .vscode/
 *.suo
@@ -14,90 +18,88 @@
 *.swp
 *.swo
 
-# Build outputs and intermediate files
+# 3. Build outputs and intermediate files
 bin/
 obj/
 out/
 dist/
 build/
 
-# ASP.NET publish profiles
+# 4. Publish profiles and local settings
 *.pubxml
 *.pubxml.user
+*.vs/
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+*.cache
+*.mdb
+*.opendb
+*.VC.db
+*.vscode/
 
-# Logs and debug
-*.log
-debug/
+# 5. Docker and Compose files
+Dockerfile*
+docker-compose*
 
-# Temporary and cache files
-tmp/
-temp/
-*.tmp
-*.temp
-
-# Environment and secrets
-.env
-.env.*
+# 6. Environment and secrets
+.env*
 *.env
 *.pem
 *.key
 *.crt
+config.local.*
+*.local.yml
 
-# Node.js (in case of frontend assets)
-node_modules/
-npm-debug.log
-yarn-debug.log
+# 7. Documentation and markdown
+README*
+*.md
 
-# Python (if any scripts are present)
+# 8. Temporary and backup files
+*.tmp
+*.bak
+*.temp
+*.log
+*.~
+~$*
+
+# 9. Test and debug artifacts
+test/
+tests/
+debug/
+coverage/
+*.coverage
+
+# 10. Python, Node.js, Go, Java (for completeness)
 __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
-.coverage
-
-# Go (if any)
+node_modules/
+npm-debug.log
+yarn-debug.log
 /vendor/
 *.test
 .go-cache/
-
-# Java (if any)
 target/
 *.class
 .gradle/
 
-# Documentation and markdown
-README*
-*.md
-docs/
-
-# Docker files (do not copy other Dockerfiles or compose files)
-Dockerfile*
-docker-compose*
-
-# Local development and config
-.local/
-local/
-config.local.*
-*.local.yml
-
-# SVN and Mercurial
+# 11. SVN, Mercurial
 .svn/
 .hg/
 
-# Project-specific: uploads (if not needed in build context)
+# 12. Project-specific: uploads (user-generated content, if not needed in build)
 ChessNotationsGenerator/wwwroot/uploads/
 
-# Project-specific: test and test data (if any)
-test/
-tests/
+# 13. Miscellaneous
+local/
+.local/
+tmp/
 
-# Exclude solution and project files from ignore (needed for build)
-!*.sln
-!*.csproj
+# 14. Exclude files with no extension (if not needed)
+# (Commented out, as some may be needed)
+# *.
 
-# Exclude main appsettings (needed for build)
-!appsettings.json
-!appsettings.Development.json
-
-# Exclude static assets (needed for build)
-!wwwroot/
+# =============================
+# End of .dockerignore
