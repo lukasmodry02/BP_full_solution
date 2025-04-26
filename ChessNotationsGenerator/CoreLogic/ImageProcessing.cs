@@ -17,23 +17,42 @@ public static class ImageProcessing
     
     internal static DateTime? GetDateTaken(string imagePath)
     {
-        try
-        {
-            using Image img = Image.FromFile(imagePath); //windows limitations...
-            const int dateTakenPropertyId = 36867;
-            if (img.PropertyIdList.Contains(dateTakenPropertyId))
-            {
-                var propItem = img.GetPropertyItem(dateTakenPropertyId);
-                string dateTaken = System.Text.Encoding.UTF8.GetString(propItem.Value).Trim('\0');
-                return DateTime.ParseExact(dateTaken, "yyyy:MM:dd HH:mm:ss", null);
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Date parsing gone wrong");
-        }
+        // try
+        // {
+        //     using Image img = Image.FromFile(imagePath); //windows limitations...
+        //     const int dateTakenPropertyId = 36867;
+        //     if (img.PropertyIdList.Contains(dateTakenPropertyId))
+        //     {
+        //         var propItem = img.GetPropertyItem(dateTakenPropertyId);
+        //         string dateTaken = System.Text.Encoding.UTF8.GetString(propItem.Value).Trim('\0');
+        //         return DateTime.ParseExact(dateTaken, "yyyy:MM:dd HH:mm:ss", null);
+        //     }
+        // }
+        // catch
+        // {
+        //     Console.WriteLine("Date parsing gone wrong");
+        // }
         return null;
     }
+    
+    // internal static DateTime? GetDateTaken(string imagePath)
+    // {
+    //     try
+    //     {
+    //         using Image<Rgba32> img = Image.Load<Rgba32>(imagePath);
+    //         var exifDate = img.Metadata.ExifProfile?.GetValue(SixLabors.ImageSharp.Metadata.Profiles.Exif.ExifTag.DateTimeOriginal);
+    //
+    //         if (exifDate != null)
+    //         {
+    //             return DateTime.ParseExact(exifDate.Value.ToString(), "yyyy:MM:dd HH:mm:ss", null);
+    //         }
+    //     }
+    //     catch
+    //     {
+    //         Console.WriteLine("Date parsing gone wrong");
+    //     }
+    //     return null;
+    // }
     
     public static Mat BlackAndWhite(Mat inputImage)
     {

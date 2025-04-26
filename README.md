@@ -3,7 +3,7 @@
 This project consists of two main .NET 8.0 services, each with its own Dockerfile:
 
 - **ChessFiguresClassification_Api** (exposes port `5000`)
-- **ChessNotationsGenerator** (exposes port `5002`)
+- **ChessNotationsGenerator** (exposes port `8080`)
 
 Both services are orchestrated using Docker Compose and are connected via a custom bridge network (`chessnet`).
 
@@ -28,7 +28,7 @@ Both services are orchestrated using Docker Compose and are connected via a cust
 
 ### Ports
 - `5000`: ChessFiguresClassification_Api
-- `5002`: ChessNotationsGenerator
+- `8080`: ChessNotationsGenerator
 
 ### Special Configuration
 - Both services run as non-root users inside their containers for improved security.
