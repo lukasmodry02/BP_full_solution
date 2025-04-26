@@ -1,0 +1,301 @@
+﻿@{
+    ViewData["Title"] = "Chess Notation Generator";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8" style="max-width: 900px;">
+
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-semibold">Chess Notation Generator</h1>
+                <p class="text-muted">Upload chessboard images to generate algebraic notation automatically.</p>
+            </div>
+
+            <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data" id="upload-form">
+                <div id="drop-zone" class="upload-box text-center p-5 mb-3">
+                    <img src="~/images/upload-icon.png" alt="Upload Icon" class="upload-icon mb-3" id="upload-icon" />
+                    <p class="fs-5" id="upload-text"><strong>Drag & drop</strong> images here or click to browse.</p>
+                    <input type="file" name="images" id="fileInput" multiple hidden />
+                </div>
+
+                <div class="form-check mt-2 text-start">
+                    <input type="checkbox" name="sortByDate" value="true" class="form-check-input" id="sortByDate">
+                    <label class="form-check-label" for="sortByDate">Sort pictures by <strong>date taken</strong> (default sorting will be done by <strong>name</strong>)</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100 mt-4" id="submit-btn">Generate Notation</button>
+                <div id="preview-container" class="row mt-4 g-3"></div>
+
+            </form>
+
+            @if (ViewBag.Massage != null)
+            {
+                <div class="mt-5" data-error-output>
+                    <pre class="bg-light p-3 border rounded fade-in">@ViewBag.Massage.ToString()</pre>
+                </div>
+            }
+            @if (ViewBag.Notation != null)
+            {
+                <div class="mt-5" data-notation-output>
+                    <h4>Generated Notation:</h4>
+                    <pre id="notation-output" class="bg-light p-3 border rounded fade-in">@ViewBag.Notation</pre>
+
+                    <div class="d-flex gap-2 mt-2">
+                        <button class="btn btn-outline-secondary" onclick="copyNotation(this)">Copy Notation</button>
+                        <button class="btn btn-outline-success" onclick="downloadNotationAsSVG()">Download as SVG</button>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .upload-icon {
+        width: 64px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    #drop-zone.drag-over .upload-icon {
+        transform: scale(1.15);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .upload-box {
+        border: 2px dashed #dee2e6;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .upload-box:hover {
+        background-color: #e9ecef;
+        border-color: #0d6efd;
+    }
+
+    button {
+        transition: all 0.2s ease-in-out;
+    }
+
+</style>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
+
+
+    <script>
+        let sortedPreviewFiles = [];
+
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('preview-container');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            fileInput.files = e.dataTransfer.files;
+            updatePreview();
+        });
+
+        fileInput.addEventListener('change', updatePreview);
+        document.getElementById('sortByDate').addEventListener('change', updatePreview);
+
+        function naturalSort(a, b) {
+            const re = /(\d+)|(\D+)/g;
+            const aChunks = a.toLowerCase().match(re);
+            const bChunks = b.toLowerCase().match(re);
+            const len = Math.max(aChunks.length, bChunks.length);
+
+            for (let i = 0; i < len; i++) {
+                const aChunk = aChunks[i];
+                const bChunk = bChunks[i];
+                if (aChunk === undefined) return -1;
+                if (bChunk === undefined) return 1;
+
+                const aNum = parseInt(aChunk, 10);
+                const bNum = parseInt(bChunk, 10);
+
+                const aIsNum = !isNaN(aNum);
+                const bIsNum = !isNaN(bNum);
+
+                if (aIsNum && bIsNum) {
+                    if (aNum !== bNum) return aNum - bNum;
+                } else if (aChunk !== bChunk) {
+                    return aChunk.localeCompare(bChunk);
+                }
+            }
+
+            return 0;
+        }
+
+        async function updatePreview() {
+            const sortByDate = document.getElementById('sortByDate').checked;
+            const inputFiles = Array.from(fileInput.files);
+
+            if (sortByDate) {
+                const filesWithDates = await Promise.all(inputFiles.map(async file => {
+                    let date = new Date(0);
+                    try {
+                        const exif = await exifr.parse(file, ['DateTimeOriginal']);
+                        if (exif?.DateTimeOriginal) {
+                            date = exif.DateTimeOriginal;
+                            console.log(`${file.name} ➜ EXIF Date: ${date}`);
+                        } else {
+                            date = new Date(file.lastModified);
+                            console.warn(`${file.name} ➜ No EXIF found. Using lastModified: ${date}`);
+                        }
+                    } catch (e) {
+                        console.error(`Error reading EXIF for ${file.name}`, e);
+                        date = new Date(file.lastModified);
+                    }
+                    return { file, date };
+                }));
+
+                sortedPreviewFiles = filesWithDates
+                    .sort((a, b) => a.date - b.date)
+                    .map(f => f.file);
+            } else {
+                sortedPreviewFiles = [...inputFiles].sort((a, b) => naturalSort(a.name, b.name));
+            }
+
+            renderPreviews();
+        }
+
+
+        function renderPreviews() {
+            previewContainer.innerHTML = '';
+
+            const cardHtmlList = [];
+            let loadedCount = 0;
+
+            sortedPreviewFiles.forEach((file, index) => {
+                if (!file.type.startsWith('image/')) return;
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    cardHtmlList[index] = `
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="${e.target.result}" class="card-img-top" alt="${file.name}">
+                            <div class="card-body p-2 text-center">
+                                <p class="card-text small text-truncate mb-1">#${index + 1} – ${file.name}</p>
+                                <small class="text-muted">${(file.size / 1024).toFixed(1)} KB</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    loadedCount++;
+
+                    if (loadedCount === sortedPreviewFiles.length) {
+                        previewContainer.innerHTML = cardHtmlList.join('');
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        document.getElementById('upload-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // ✅ Disable drag-and-drop + checkbox
+            document.getElementById('drop-zone').classList.add('disabled');
+            document.getElementById('sortByDate').disabled = true;
+
+            const icon = document.getElementById('upload-icon');
+            const text = document.getElementById('upload-text');
+            const button = document.getElementById('submit-btn');
+
+            icon.style.display = 'none';
+            text.innerHTML = `<div class="spinner-border text-primary" role="status"></div><br/><span class="mt-2 d-block">Generating notation...</span>`;
+            button.disabled = true;
+            button.innerText = "Processing...";
+
+            document.querySelector('[data-notation-output]')?.remove();
+            document.querySelector('[data-error-output]')?.remove();
+
+            const sortByDate = document.getElementById('sortByDate').checked;
+            const formData = new FormData();
+
+            sortedPreviewFiles.forEach(file => formData.append('images', file));
+            formData.append('sortByDate', sortByDate);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            }).then(async response => {
+                const html = await response.text();
+                document.open();
+                document.write(html);
+                document.close();
+            });
+        });
+
+
+        function copyNotation(button) {
+            const notationText = document.getElementById('notation-output').innerText;
+            navigator.clipboard.writeText(notationText).then(() => {
+                const originalText = button.innerText;
+                button.innerText = "Copied!";
+                button.disabled = true;
+
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.disabled = false;
+                }, 2000);
+            });
+        }
+
+        function downloadNotationAsSVG() {
+            const notationText = document.getElementById('notation-output').innerText;
+            const lines = notationText.split("\n");
+
+            const lineHeight = 20;
+            const fontSize = 16;
+            const width = 600;
+            const height = lines.length * lineHeight + 20;
+
+            const svgContent = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+            <rect width="100%" height="100%" fill="white"/>
+            <g font-family="Courier New, monospace" font-size="${fontSize}" fill="black">
+                ${lines.map((line, i) =>
+                `<text x="10" y="${(i + 1) * lineHeight + 5}">${line}</text>`).join('')}
+            </g>
+        </svg>`;
+
+            const blob = new Blob([svgContent], { type: "image/svg+xml" });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "chess-notation.svg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        window.addEventListener("error", function (event) {
+            console.error("JS Error:", event.message);
+            alert("An unexpected error occurred in the frontend.");
+        });
+
+        window.addEventListener("unhandledrejection", function (event) {
+            console.error("Unhandled Promise:", event.reason);
+            alert("A processing error occurred. Please try again.");
+        });
+    </script>
+
+}

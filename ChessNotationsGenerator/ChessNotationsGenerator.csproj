@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dockerfile" Version="1.0.0" />
+      <PackageReference Include="Emgu.CV" Version="4.10.0.5680" />
+      <PackageReference Include="Emgu.CV.Bitmap" Version="4.10.0.5680" />
+      <PackageReference Include="Emgu.CV.runtime.ubuntu.20.04-x64" Version="4.5.3.4721" />
+      <PackageReference Include="Emgu.CV.runtime.windows" Version="4.10.0.5680" />
+      <PackageReference Include="OpenCV" Version="2.4.11" />
+      <PackageReference Include="OpenCvSharp4.runtime.ubuntu.18.04-x64" Version="4.6.0.20220608" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\uploads\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\5b572461-ba2a-4d2a-9db3-b99b7f50de2f\IMG_4454.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\5b572461-ba2a-4d2a-9db3-b99b7f50de2f\IMG_4455.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\5b572461-ba2a-4d2a-9db3-b99b7f50de2f\IMG_4456.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\7679f811-2a29-44a6-b67e-de855135f787\IMG_4454.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\7679f811-2a29-44a6-b67e-de855135f787\IMG_4455.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\uploads\7679f811-2a29-44a6-b67e-de855135f787\IMG_4456.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\project_to_release\BP_solution\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>
