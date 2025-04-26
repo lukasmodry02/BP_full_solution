@@ -1,0 +1,103 @@
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# IDE and editor folders/files
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.swp
+*.swo
+
+# Build outputs and intermediate files
+bin/
+obj/
+out/
+dist/
+build/
+
+# ASP.NET publish profiles
+*.pubxml
+*.pubxml.user
+
+# Logs and debug
+*.log
+debug/
+
+# Temporary and cache files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Environment and secrets
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.crt
+
+# Node.js (in case of frontend assets)
+node_modules/
+npm-debug.log
+yarn-debug.log
+
+# Python (if any scripts are present)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+
+# Go (if any)
+/vendor/
+*.test
+.go-cache/
+
+# Java (if any)
+target/
+*.class
+.gradle/
+
+# Documentation and markdown
+README*
+*.md
+docs/
+
+# Docker files (do not copy other Dockerfiles or compose files)
+Dockerfile*
+docker-compose*
+
+# Local development and config
+.local/
+local/
+config.local.*
+*.local.yml
+
+# SVN and Mercurial
+.svn/
+.hg/
+
+# Project-specific: uploads (if not needed in build context)
+ChessNotationsGenerator/wwwroot/uploads/
+
+# Project-specific: test and test data (if any)
+test/
+tests/
+
+# Exclude solution and project files from ignore (needed for build)
+!*.sln
+!*.csproj
+
+# Exclude main appsettings (needed for build)
+!appsettings.json
+!appsettings.Development.json
+
+# Exclude static assets (needed for build)
+!wwwroot/

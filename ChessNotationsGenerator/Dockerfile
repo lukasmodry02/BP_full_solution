@@ -1,23 +1,35 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+# syntax=docker/dockerfile:1
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG DOTNET_VERSION=8.0
+
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 WORKDIR /src
-COPY ["ChessNotationsGenerator/ChessNotationsGenerator.csproj", "ChessNotationsGenerator/"]
-RUN dotnet restore "ChessNotationsGenerator/ChessNotationsGenerator.csproj"
-COPY . .
-WORKDIR "/src/ChessNotationsGenerator"
-RUN dotnet build "./ChessNotationsGenerator.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ChessNotationsGenerator.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Copy csproj and restore as distinct layers
+COPY --link ChessNotationsGenerator/ChessNotationsGenerator.csproj ChessNotationsGenerator/
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    --mount=type=cache,target=/root/.cache/msbuild \
+    dotnet restore ChessNotationsGenerator/ChessNotationsGenerator.csproj
 
-FROM base AS final
+# Copy the rest of the source code
+COPY --link ChessNotationsGenerator/ ChessNotationsGenerator/
+WORKDIR /src/ChessNotationsGenerator
+
+# Build and publish
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    --mount=type=cache,target=/root/.cache/msbuild \
+    dotnet publish -c Release -o /app/publish --no-restore /p:UseAppHost=false
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
+
+# Create a non-root user and set permissions
+RUN useradd -m appuser
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
+USER appuser
+
+EXPOSE 8080
+
 ENTRYPOINT ["dotnet", "ChessNotationsGenerator.dll"]
