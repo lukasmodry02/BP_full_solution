@@ -14,20 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9df8eab4-dd3b-4e88-b02a-046d823665e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/BP_solution/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/FileContentIndex/3a8defb6-0914-4674-af11-284a693b1af7.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/BP_solution/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.metadata.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.projects.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.strings.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +29,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ChessNotationsGenerator" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -46,16 +37,17 @@
     &quot;assignee&quot;: &quot;lukasmodry02&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/lukasmodry02/ChessNotionsWebApp&quot;,
-    &quot;accountId&quot;: &quot;be5a0571-6dc3-46a3-814f-0c6317b9348a&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lukasmodry02/BP_full_solution",
+    "accountId": "be5a0571-6dc3-46a3-814f-0c6317b9348a"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -64,28 +56,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.ChessFiguresClassification_Api.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.ChessNotationsGenerator: http.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dockerDeploy&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.ChessFiguresClassification_Api.executor": "Run",
+    ".NET Launch Settings Profile.ChessNotationsGenerator: http.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dockerDeploy",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Config&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Config"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ChessFiguresClassification_Api">
     <configuration name="ChessFiguresClassification_Api: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile.pubxml" pubxml_path="$PROJECT_DIR$/ChessFiguresClassification_Api/Properties/PublishProfiles/FolderProfile.pubxml" uuid_high="429628541505191960" uuid_low="-7599412005987471940" />
@@ -220,12 +213,14 @@
       <workItem from="1745265594528" duration="7937000" />
       <workItem from="1745312177436" duration="13609000" />
       <workItem from="1745661669189" duration="2724000" />
+      <workItem from="1745854863701" duration="7081000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

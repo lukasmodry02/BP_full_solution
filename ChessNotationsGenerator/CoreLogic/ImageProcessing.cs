@@ -1,7 +1,6 @@
 using System.Drawing;
 using Bakalarka;
 using Emgu.CV;
-using Emgu.CV.Cuda;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
@@ -746,63 +745,63 @@ public static class ImageProcessing
     }
     
     
-    //Note: My gpu Radeon 780M have no cuda support so no everything is running on cpu... can improve on other systems
-    private static bool IsSquareOccupiedContour_gpu(Mat edgesCpu, PointF[] corners)
-    {
-        if (!CudaInvoke.HasCuda)
-        {
-            // Fallback to original CPU implementation
-            return IsSquareOccupiedContour(edgesCpu, corners);
-        }
-
-        using var edgesGpu = new CudaImage<Bgra, byte>(edgesCpu);
-
-        float centerX = (corners[0].X + corners[2].X) / 2;
-        float centerY = (corners[0].Y + corners[2].Y) / 2;
-
-        float radius = Math.Min(
-            Math.Abs(corners[0].X - corners[1].X) / 3,
-            Math.Abs(corners[0].Y - corners[3].Y) / 3
-        );
-
-        using var maskCpu = new Mat(edgesCpu.Size, DepthType.Cv8U, 1);
-        maskCpu.SetTo(new MCvScalar(0));
-        CvInvoke.Circle(maskCpu, new Point((int)centerX, (int)centerY), (int)radius, new MCvScalar(255), -1);
-
-        using var maskGpu = new CudaImage<Gray, byte>(maskCpu);
-
-        using var maskedEdgesGpu = new CudaImage<Gray, byte>(edgesCpu.Size);
-        CudaInvoke.BitwiseAnd(edgesGpu, maskGpu, maskedEdgesGpu, null);
-
-        using var maskedEdgesCpu = new Mat();
-        maskedEdgesGpu.Download(maskedEdgesCpu);
-        
-        using var contours = new VectorOfVectorOfPoint();
-        CvInvoke.FindContours(maskedEdgesCpu, contours, null, RetrType.External, ChainApproxMethod.ChainApproxTc89L1);
-
-        using var hulls = new VectorOfVectorOfPoint();
-        for (int i = 0; i < contours.Size; i++)
-        {
-            using var contour = contours[i];
-            var hull = new VectorOfPoint();
-            CvInvoke.ConvexHull(contour, hull);
-            hulls.Push(hull);
-        }
-
-        var notAcceptedAreas = new List<int>();
-        for (int i = 0; i < hulls.Size; i++)
-        {
-            using var hull = hulls[i];
-            var area = CvInvoke.ContourArea(hull);
-            if (area > Constans.MinContourArea)
-            {
-                return true;
-            }
-            notAcceptedAreas.Add((int)area);
-        }
-
-        return notAcceptedAreas.Count > 1;
-    }
+    // //Note: My gpu Radeon 780M have no cuda support so no everything is running on cpu... can improve on other systems
+    // private static bool IsSquareOccupiedContour_gpu(Mat edgesCpu, PointF[] corners)
+    // {
+    //     if (!CudaInvoke.HasCuda)
+    //     {
+    //         // Fallback to original CPU implementation
+    //         return IsSquareOccupiedContour(edgesCpu, corners);
+    //     }
+    //
+    //     using var edgesGpu = new CudaImage<Bgra, byte>(edgesCpu);
+    //
+    //     float centerX = (corners[0].X + corners[2].X) / 2;
+    //     float centerY = (corners[0].Y + corners[2].Y) / 2;
+    //
+    //     float radius = Math.Min(
+    //         Math.Abs(corners[0].X - corners[1].X) / 3,
+    //         Math.Abs(corners[0].Y - corners[3].Y) / 3
+    //     );
+    //
+    //     using var maskCpu = new Mat(edgesCpu.Size, DepthType.Cv8U, 1);
+    //     maskCpu.SetTo(new MCvScalar(0));
+    //     CvInvoke.Circle(maskCpu, new Point((int)centerX, (int)centerY), (int)radius, new MCvScalar(255), -1);
+    //
+    //     using var maskGpu = new CudaImage<Gray, byte>(maskCpu);
+    //
+    //     using var maskedEdgesGpu = new CudaImage<Gray, byte>(edgesCpu.Size);
+    //     CudaInvoke.BitwiseAnd(edgesGpu, maskGpu, maskedEdgesGpu, null);
+    //
+    //     using var maskedEdgesCpu = new Mat();
+    //     maskedEdgesGpu.Download(maskedEdgesCpu);
+    //     
+    //     using var contours = new VectorOfVectorOfPoint();
+    //     CvInvoke.FindContours(maskedEdgesCpu, contours, null, RetrType.External, ChainApproxMethod.ChainApproxTc89L1);
+    //
+    //     using var hulls = new VectorOfVectorOfPoint();
+    //     for (int i = 0; i < contours.Size; i++)
+    //     {
+    //         using var contour = contours[i];
+    //         var hull = new VectorOfPoint();
+    //         CvInvoke.ConvexHull(contour, hull);
+    //         hulls.Push(hull);
+    //     }
+    //
+    //     var notAcceptedAreas = new List<int>();
+    //     for (int i = 0; i < hulls.Size; i++)
+    //     {
+    //         using var hull = hulls[i];
+    //         var area = CvInvoke.ContourArea(hull);
+    //         if (area > Constans.MinContourArea)
+    //         {
+    //             return true;
+    //         }
+    //         notAcceptedAreas.Add((int)area);
+    //     }
+    //
+    //     return notAcceptedAreas.Count > 1;
+    // }
     
     private static bool IsSquareOccupiedContour(Mat edges, PointF[] corners)
     {

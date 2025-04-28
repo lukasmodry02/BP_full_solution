@@ -2,8 +2,10 @@
 
 ARG DOTNET_VERSION=8.0
 
+
+#vzit full .net framework...  
 # -------- Build Stage --------
-FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build 
 WORKDIR /src
 
 COPY ChessNotationsGenerator/ChessNotationsGenerator.csproj ChessNotationsGenerator/
@@ -14,23 +16,23 @@ COPY ChessNotationsGenerator/ ChessNotationsGenerator/
 WORKDIR /src/ChessNotationsGenerator
 
 RUN mkdir -p /publish && \
-    echo "Publishing project..." && \
-    dotnet publish ChessNotationsGenerator.csproj -c Release -o /publish /p:UseAppHost=false || (echo "ublish failed!" && exit 1)
+    dotnet publish ChessNotationsGenerator.csproj -c Release -o /publish 
 
-RUN echo "Listing /publish contents:" && ls -l /publish
-
+#same here... 
 # -------- Runtime Stage --------
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS runtime
 WORKDIR /app
 
-# ✅ Create appuser here in runtime image
-RUN adduser --disabled-password --gecos "" appuser
+#zkusit vlozit dodnet restore  
+#run as root 
+# Create appuser here in runtime image
+#RUN adduser --disabled-password --gecos "" appuser
 
 COPY --from=build /publish .
 
-RUN mkdir -p /app/wwwroot/uploads && chown -R appuser:appuser /app/wwwroot/uploads 
+#RUN mkdir -p /app/wwwroot/uploads && chown -R appuser:appuser /app/wwwroot/uploads 
 
-USER appuser
+#USER appuser
 
 EXPOSE 8080
 
