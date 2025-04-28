@@ -14,10 +14,10 @@ COPY ChessNotationsGenerator/ ChessNotationsGenerator/
 WORKDIR /src/ChessNotationsGenerator
 
 RUN mkdir -p /publish && \
-    echo "✅ Publishing project..." && \
-    dotnet publish ChessNotationsGenerator.csproj -c Release -o /publish /p:UseAppHost=false || (echo "❌ Publish failed!" && exit 1)
+    echo "Publishing project..." && \
+    dotnet publish ChessNotationsGenerator.csproj -c Release -o /publish /p:UseAppHost=false || (echo "ublish failed!" && exit 1)
 
-RUN echo "✅ Listing /publish contents:" && ls -l /publish
+RUN echo "Listing /publish contents:" && ls -l /publish
 
 # -------- Runtime Stage --------
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS runtime
