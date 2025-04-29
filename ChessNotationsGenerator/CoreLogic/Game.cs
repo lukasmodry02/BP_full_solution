@@ -24,7 +24,7 @@ public class Game()
         return GameStates;
     }
     
-    public ChessBoard GetGameStateOnIndex(int index)
+    private ChessBoard GetGameStateOnIndex(int index)
     {
         return GameStates[index];
     }
