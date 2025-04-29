@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// builder.WebHost.UseUrls("http://0.0.0.0:5002"); //added for docker
+builder.WebHost.UseUrls("http://0.0.0.0:8080"); //added for docker
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
@@ -45,7 +45,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection(); //commented for docker
+// app.UseHttpsRedirection(); //commented for docker
 app.UseStaticFiles();   
 
 app.UseRouting();

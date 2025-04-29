@@ -14,20 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9df8eab4-dd3b-4e88-b02a-046d823665e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/BP_solution/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/FileContentIndex/3a8defb6-0914-4674-af11-284a693b1af7.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/BP_solution/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/BP_solution/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.metadata.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.projects.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/bp_solution.strings.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +25,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ChessNotationsGenerator" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -48,7 +35,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/lukasmodry02/ChessNotionsWebApp&quot;,
+    &quot;url&quot;: &quot;https://github.com/lukasmodry02/BP_full_solution&quot;,
     &quot;accountId&quot;: &quot;be5a0571-6dc3-46a3-814f-0c6317b9348a&quot;
   }
 }</component>
@@ -56,6 +43,7 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -70,7 +58,8 @@
     &quot;.NET Launch Settings Profile.ChessNotationsGenerator: http.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;release&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dockerDeploy&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -220,12 +209,14 @@
       <workItem from="1745265594528" duration="7937000" />
       <workItem from="1745312177436" duration="13609000" />
       <workItem from="1745661669189" duration="2724000" />
+      <workItem from="1745854863701" duration="7081000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

@@ -1,0 +1,105 @@
+# =============================
+# .dockerignore for C#/.NET projects
+# =============================
+
+# 1. Version control
+.git/
+.gitignore
+.gitattributes
+
+# 2. IDE and editor settings
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.swp
+*.swo
+
+# 3. Build outputs and intermediate files
+bin/
+obj/
+out/
+dist/
+build/
+
+# 4. Publish profiles and local settings
+*.pubxml
+*.pubxml.user
+*.vs/
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+*.cache
+*.mdb
+*.opendb
+*.VC.db
+*.vscode/
+
+# 5. Docker and Compose files
+Dockerfile*
+docker-compose*
+
+# 6. Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+
+# 7. Documentation and markdown
+README*
+*.md
+
+# 8. Temporary and backup files
+*.tmp
+*.bak
+*.temp
+*.log
+*.~
+~$*
+
+# 9. Test and debug artifacts
+test/
+tests/
+debug/
+coverage/
+*.coverage
+
+# 10. Python, Node.js, Go, Java (for completeness)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+node_modules/
+npm-debug.log
+yarn-debug.log
+/vendor/
+*.test
+.go-cache/
+target/
+*.class
+.gradle/
+
+# 11. SVN, Mercurial
+.svn/
+.hg/
+
+# 12. Project-specific: uploads (user-generated content, if not needed in build)
+ChessNotationsGenerator/wwwroot/uploads/
+
+# 13. Miscellaneous
+local/
+.local/
+tmp/
+
+# 14. Exclude files with no extension (if not needed)
+# (Commented out, as some may be needed)
+# *.
+
+# =============================
+# End of .dockerignore

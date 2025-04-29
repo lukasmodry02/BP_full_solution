@@ -1,0 +1,33 @@
+services:
+#  csharp-chessfiguresclassification_api:
+#    build:
+#      context: .
+#      dockerfile: ChessFiguresClassification_Api/Dockerfile
+#    container_name: csharp-chessfiguresclassification_api
+#    restart: unless-stopped
+#    init: true
+#    ports:
+#      - "5000:5000"
+#    network_mode: host
+
+  csharp-chessnotationsgenerator:
+    build:
+      context: .
+      dockerfile: ChessNotationsGenerator/Dockerfile
+    container_name: csharp-chessnotationsgenerator
+    restart: unless-stopped
+    init: true
+    ports:
+      - 8080:8080
+    networks:
+      - chessnet
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    
+    
+networks:
+  chessnet:
+    driver: bridge
+#    network_mode: host
+#    depends_on:
+#      - csharp-chessfiguresclassification_api
