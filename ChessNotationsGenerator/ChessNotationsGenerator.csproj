@@ -34,6 +34,9 @@
       <Content Include="..\..\project_to_release\BP_solution\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
