@@ -15,10 +15,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9df8eab4-dd3b-4e88-b02a-046d823665e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +33,12 @@
     &quot;assignee&quot;: &quot;lukasmodry02&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lukasmodry02/BP_full_solution",
-    "accountId": "be5a0571-6dc3-46a3-814f-0c6317b9348a"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lukasmodry02/BP_full_solution&quot;,
+    &quot;accountId&quot;: &quot;be5a0571-6dc3-46a3-814f-0c6317b9348a&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -56,29 +52,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.ChessFiguresClassification_Api.executor": "Run",
-    ".NET Launch Settings Profile.ChessNotationsGenerator: http.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dockerDeploy",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.ChessFiguresClassification_Api.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.ChessNotationsGenerator: http.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dockerDeploy&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Config"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Config&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ChessFiguresClassification_Api">
     <configuration name="ChessFiguresClassification_Api: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile.pubxml" pubxml_path="$PROJECT_DIR$/ChessFiguresClassification_Api/Properties/PublishProfiles/FolderProfile.pubxml" uuid_high="429628541505191960" uuid_low="-7599412005987471940" />
