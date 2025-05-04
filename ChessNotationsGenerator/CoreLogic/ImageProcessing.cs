@@ -1,9 +1,10 @@
 using System.Drawing;
-using Bakalarka;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
+using MetadataExtractor;
+using MetadataExtractor.Formats.Exif;
 
 namespace ChessNotationsGenerator.CoreLogic;
 public static class ImageProcessing
@@ -16,21 +17,19 @@ public static class ImageProcessing
     
     internal static DateTime? GetDateTaken(string imagePath)
     {
-        // try
-        // {
-        //     using Image img = Image.FromFile(imagePath); //windows limitations...
-        //     const int dateTakenPropertyId = 36867;
-        //     if (img.PropertyIdList.Contains(dateTakenPropertyId))
-        //     {
-        //         var propItem = img.GetPropertyItem(dateTakenPropertyId);
-        //         string dateTaken = System.Text.Encoding.UTF8.GetString(propItem.Value).Trim('\0');
-        //         return DateTime.ParseExact(dateTaken, "yyyy:MM:dd HH:mm:ss", null);
-        //     }
-        // }
-        // catch
-        // {
-        //     Console.WriteLine("Date parsing gone wrong");
-        // }
+        try
+        {
+            var directories = ImageMetadataReader.ReadMetadata(imagePath);
+            var subIfdDirectory = directories.OfType<ExifSubIfdDirectory>().FirstOrDefault();
+            var dateTime = subIfdDirectory?.GetDescription(ExifDirectoryBase.TagDateTimeOriginal);
+
+            if (DateTime.TryParse(dateTime, out var parsedDate))
+                return parsedDate;
+        }
+        catch
+        {
+            Console.WriteLine("Failed to extract DateTaken");
+        }
         return null;
     }
     

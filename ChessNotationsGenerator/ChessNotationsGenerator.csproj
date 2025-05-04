@@ -13,11 +13,13 @@
       <PackageReference Include="Emgu.CV.Bitmap" Version="4.10.0.5680" />
       <PackageReference Include="Emgu.CV.runtime.ubuntu.20.04-x64" Version="4.5.3.4721" />
       <PackageReference Include="Emgu.CV.runtime.windows" Version="4.10.0.5680" />
+      <PackageReference Include="MetadataExtractor" Version="2.9.0-rc2" />
       <PackageReference Include="OpenCV" Version="2.4.11" />
       <PackageReference Include="OpenCvSharp4.runtime.ubuntu.18.04-x64" Version="4.6.0.20220608" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="native-libs\linux-x64\" />
       <Folder Include="wwwroot\uploads\" />
     </ItemGroup>
 

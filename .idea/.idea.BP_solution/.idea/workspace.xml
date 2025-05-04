@@ -15,6 +15,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9df8eab4-dd3b-4e88-b02a-046d823665e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +64,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dockerDeploy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -75,7 +80,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ChessFiguresClassification_Api">
+  <component name="RunManager" selected=".NET Launch Settings Profile.ChessNotationsGenerator: http">
     <configuration name="ChessFiguresClassification_Api: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile.pubxml" pubxml_path="$PROJECT_DIR$/ChessFiguresClassification_Api/Properties/PublishProfiles/FolderProfile.pubxml" uuid_high="429628541505191960" uuid_low="-7599412005987471940" />
       <method v="2" />
@@ -191,6 +196,27 @@
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
+    <configuration name="ChessNotationsGenerator/Dockerfile1" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="chessnotationsgenerator" />
+          <option name="containerName" value="chessnotationsgenerator" />
+          <option name="contextFolderPath" value="C:\prace\skola\bakalarka\project_to_release" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="8080" />
+                <option name="hostIp" value="127.0.0.1" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="ChessNotationsGenerator/Dockerfile1" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile">
         <settings />
@@ -210,6 +236,10 @@
       <workItem from="1745312177436" duration="13609000" />
       <workItem from="1745661669189" duration="2724000" />
       <workItem from="1745854863701" duration="7081000" />
+      <workItem from="1745937455442" duration="4235000" />
+      <workItem from="1746003034730" duration="707000" />
+      <workItem from="1746094133641" duration="8490000" />
+      <workItem from="1746351294124" duration="8621000" />
     </task>
     <servers />
   </component>
