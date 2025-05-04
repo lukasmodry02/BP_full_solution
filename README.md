@@ -58,6 +58,7 @@ if you want to start all the services in the background (detached from your term
 
 ### 3. Access the App
 - **Generator WebApp**: http://localhost:8080
+- You can test the app with these [images](https://www.dropbox.com/scl/fo/7tarqzily7hu284d60oss/AMQnKUn6khhB9gzWWQTH_3o?rlkey=7lfmosfezsyf1wl5em06wxem7&st=jj9tpt0u&dl=0) . Every sub dir is a chess game ready to be tested.
 
 ## Compose Configuration
 
