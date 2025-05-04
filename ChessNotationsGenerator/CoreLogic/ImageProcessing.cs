@@ -33,25 +33,6 @@ public static class ImageProcessing
         return null;
     }
     
-    // internal static DateTime? GetDateTaken(string imagePath)
-    // {
-    //     try
-    //     {
-    //         using Image<Rgba32> img = Image.Load<Rgba32>(imagePath);
-    //         var exifDate = img.Metadata.ExifProfile?.GetValue(SixLabors.ImageSharp.Metadata.Profiles.Exif.ExifTag.DateTimeOriginal);
-    //
-    //         if (exifDate != null)
-    //         {
-    //             return DateTime.ParseExact(exifDate.Value.ToString(), "yyyy:MM:dd HH:mm:ss", null);
-    //         }
-    //     }
-    //     catch
-    //     {
-    //         Console.WriteLine("Date parsing gone wrong");
-    //     }
-    //     return null;
-    // }
-    
     public static Mat BlackAndWhite(Mat inputImage)
     {
         var blackAndWhite = new Mat();
@@ -79,20 +60,10 @@ public static class ImageProcessing
     
     private static byte[] ConvertToByteArray(Mat inputImage)
     {
-        using var buffer = new Emgu.CV.Util.VectorOfByte();
+        using var buffer = new VectorOfByte();
         CvInvoke.Imencode(".png", inputImage, buffer);
         return buffer.ToArray();
     }
-
-    
-    //widows dependent
-    // private static byte[] ConvertToByteArray(Mat inputImage)
-    // {
-    //     using var memoryStream = new MemoryStream();
-    //     using var bitmap = inputImage.ToImage<Bgr, byte>().ToBitmap();
-    //     bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-    //     return memoryStream.ToArray();
-    // }
 
     private static async Task<List<(FigureType type, FigureColor color)>> GetTopFiveFiguresPrediction(Mat inputImage)
     {
