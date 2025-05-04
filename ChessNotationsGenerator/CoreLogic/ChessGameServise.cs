@@ -1,5 +1,3 @@
-using Bakalarka;
-
 namespace ChessNotationsGenerator.CoreLogic;
 
 public class ChessGameService

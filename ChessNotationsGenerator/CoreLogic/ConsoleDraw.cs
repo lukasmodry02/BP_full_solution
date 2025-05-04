@@ -1,7 +1,6 @@
 using System.Text;
-using ChessNotationsGenerator.CoreLogic;
 
-namespace Bakalarka;
+namespace ChessNotationsGenerator.CoreLogic;
 
 public static class ConsoleDraw
 {

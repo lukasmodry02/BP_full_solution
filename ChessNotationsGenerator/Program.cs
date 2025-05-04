@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Bakalarka;
 using ChessNotationsGenerator.CoreLogic;
 using Emgu.CV;
 using Microsoft.AspNetCore.Http.Features;

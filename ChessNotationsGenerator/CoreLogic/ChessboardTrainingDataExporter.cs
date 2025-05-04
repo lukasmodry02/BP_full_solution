@@ -1,9 +1,8 @@
 using System.Drawing;
-using ChessNotationsGenerator.CoreLogic;
 using Emgu.CV;
 using Emgu.CV.Structure;
 
-namespace Bakalarka;
+namespace ChessNotationsGenerator.CoreLogic;
 
 public static class ChessboardTrainingDataExporter
 {

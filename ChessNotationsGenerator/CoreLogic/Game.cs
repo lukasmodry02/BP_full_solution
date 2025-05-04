@@ -1,4 +1,3 @@
-using Bakalarka;
 using Emgu.CV;
 
 namespace ChessNotationsGenerator.CoreLogic;
