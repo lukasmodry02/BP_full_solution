@@ -35,11 +35,11 @@ cd <path_to_cloned_repo>
 This pulls the published images from Docker Hub and starts the containers:
 
 ```bash
-docker compose up
+docker-compose up
 ```
 or 
 ```bash
-docker compose up -d
+docker-compose up -d
 ```
 if you want to starts all the services in the background (detached from your terminal).
 
