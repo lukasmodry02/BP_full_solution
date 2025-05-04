@@ -24,7 +24,7 @@ Both services are orchestrated using Docker Compose and are connected via a cust
 
 2. Access the services at:
    - **ChessFiguresClassification_Api**: http://localhost:5000
-   - **ChessNotationsGenerator**: http://localhost:5002
+   - **ChessNotationsGenerator**: http://localhost:8080
 
 ### Ports
 - `5000`: ChessFiguresClassification_Api
