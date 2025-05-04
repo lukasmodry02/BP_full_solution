@@ -5,7 +5,7 @@ This project provides a modular and functional system that automatically convert
 - **API for Chess Figure Classification** using an ML.NET model.
 
 - **Web app Generator for Chess Notation,** which processes sequences of board states, detects changes,
-and reconstructs moves with user friendly *UI*.
+and reconstructs moves with user-friendly *UI*.
 
 # Dockerized Deployment
 
