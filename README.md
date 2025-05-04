@@ -54,12 +54,12 @@ or
 ```bash
 docker-compose up -d
 ```
-if you want to starts all the services in the background (detached from your terminal).
+if you want to start all the services in the background (detached from your terminal).
 
 ### 3. Access the App
 - **Generator WebApp**: http://localhost:8080
 
-## 🔧 Compose Configuration
+## Compose Configuration
 
 ### Docker Compose (`docker-compose.yml`)
 By default, the project uses these **Docker Hub** images:
