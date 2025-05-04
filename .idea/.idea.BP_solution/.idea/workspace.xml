@@ -15,11 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9df8eab4-dd3b-4e88-b02a-046d823665e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BP_solution/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/ChessNotationsGenerator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ApiHandling.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessFiguresClassification_Api/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/CoreLogic/ImageProcessing.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ChessNotationsGenerator/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +238,8 @@
       <workItem from="1745937455442" duration="4235000" />
       <workItem from="1746003034730" duration="707000" />
       <workItem from="1746094133641" duration="8490000" />
-      <workItem from="1746351294124" duration="8621000" />
+      <workItem from="1746351294124" duration="9279000" />
+      <workItem from="1746363349426" duration="6049000" />
     </task>
     <servers />
   </component>

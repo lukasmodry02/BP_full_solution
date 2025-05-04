@@ -76,13 +76,23 @@ public static class ImageProcessing
         return gray;
     }
     
+    
     private static byte[] ConvertToByteArray(Mat inputImage)
     {
-        using var memoryStream = new MemoryStream();
-        using var bitmap = inputImage.ToImage<Bgr, byte>().ToBitmap();
-        bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-        return memoryStream.ToArray();
+        using var buffer = new Emgu.CV.Util.VectorOfByte();
+        CvInvoke.Imencode(".png", inputImage, buffer);
+        return buffer.ToArray();
     }
+
+    
+    //widows dependent
+    // private static byte[] ConvertToByteArray(Mat inputImage)
+    // {
+    //     using var memoryStream = new MemoryStream();
+    //     using var bitmap = inputImage.ToImage<Bgr, byte>().ToBitmap();
+    //     bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+    //     return memoryStream.ToArray();
+    // }
 
     private static async Task<List<(FigureType type, FigureColor color)>> GetTopFiveFiguresPrediction(Mat inputImage)
     {

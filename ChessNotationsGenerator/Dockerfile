@@ -6,16 +6,13 @@ ARG DOTNET_VERSION=8.0
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 WORKDIR /src
 
-# Zkopírujeme .csproj pro cachování závislostí
 COPY ChessNotationsGenerator/ChessNotationsGenerator.csproj ChessNotationsGenerator/
 RUN --mount=type=cache,target=/root/.nuget/packages \
     dotnet restore ChessNotationsGenerator/ChessNotationsGenerator.csproj
 
-# Zkopírujeme zbytek projektu
 COPY ChessNotationsGenerator/ ChessNotationsGenerator/
 WORKDIR /src/ChessNotationsGenerator
 
-# Publish výstup
 RUN mkdir -p /publish && \
     dotnet publish ChessNotationsGenerator.csproj -c Release -o /publish
 
@@ -23,8 +20,10 @@ RUN mkdir -p /publish && \
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS runtime
 WORKDIR /app
 
-# Instalace závislostí potřebných pro běh Emgu.CV / OpenCV
+# Install native dependencies
 RUN apt-get update && apt-get install -y \
+    libgdiplus \
+    libc6-dev \
     libsm6 \
     libxext6 \
     libxrender-dev \
@@ -37,20 +36,13 @@ RUN apt-get update && apt-get install -y \
     libxt6 \
     libopengl0 \
     libgl1 \
-    libgdiplus \
+    && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll \
     && rm -rf /var/lib/apt/lists/*
 
-
-
-
-
-# Zkopírujeme publishovaný build
 COPY --from=build /publish .
 
-# Zkopírujeme ručně nativní knihovnu EmguCV (předpoklad: je součástí projektu)
 COPY ChessNotationsGenerator/native-libs/linux-x64/libcvextern.so /app/runtimes/ubuntu.20.04-x64/native/
 
-# Nastavíme proměnnou prostředí pro dynamické knihovny
 ENV LD_LIBRARY_PATH=/app/runtimes/ubuntu.20.04-x64/native:$LD_LIBRARY_PATH
 
 EXPOSE 8080

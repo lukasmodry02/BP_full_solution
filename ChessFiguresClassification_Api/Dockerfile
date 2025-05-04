@@ -1,17 +1,30 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿# syntax=docker/dockerfile:1
+
+ARG DOTNET_VERSION=8.0
+
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS base
 WORKDIR /app
 EXPOSE 5000
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 WORKDIR /src
-COPY ["ChessFiguresClassification_API/ChessFiguresClassification_API.csproj", "ChessFiguresClassification_API/"]
-RUN dotnet restore "ChessFiguresClassification_API/ChessFiguresClassification_API.csproj"
-COPY . .
-WORKDIR "/src/ChessFiguresClassification_API"
-RUN dotnet build "ChessFiguresClassification_API.csproj" -c Release -o /app/build
-RUN dotnet publish "ChessFiguresClassification_API.csproj" -c Release -o /app/publish
 
-FROM base AS final
+# Copy csproj and restore as distinct layers
+COPY ChessFiguresClassification_Api/ChessFiguresClassification_Api.csproj ChessFiguresClassification_Api/
+RUN dotnet restore "ChessFiguresClassification_Api/ChessFiguresClassification_Api.csproj"
+
+# Copy everything else and build
+COPY ChessFiguresClassification_Api/. ChessFiguresClassification_Api/
+WORKDIR /src/ChessFiguresClassification_Api
+RUN dotnet build "ChessFiguresClassification_Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+WORKDIR /src/ChessFiguresClassification_Api
+RUN dotnet publish "ChessFiguresClassification_Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
 WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "ChessFiguresClassification_API.dll"]
+
+# Run as root (default in base image)
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ChessFiguresClassification_Api.dll"]
