@@ -23,15 +23,28 @@ These are packaged and deployed using Docker and Docker Compose, with prebuilt i
 - [Docker](https://docs.docker.com/get-docker/) installed on your system with linux containers
 
 ### 1. Clone the Repository
-```bash
-git clone https://github.com/lukasmodry02/BP_full_solution.git
-```
-Then navigate to the directory you cloned repo.
+In commandline navigate to the directory you want this repo to be cloned.
 ```bash
 cd <path_to_cloned_repo>
 ```
+Then: Clone the repo.  
+```bash
+git clone https://github.com/lukasmodry02/BP_full_solution.git
+```
 
 ### 2. Start the Services
+Double check if you are in the correct directory.
+Folder structure should look like this.
+```
+ChessFiguresClassification_Api/
+ChessNotationsGenerator/
+docker-compose.yml
+README.md
+```
+
+If not, try to go one directory deeper.
+
+The use following command.
 This pulls the published images from Docker Hub and starts the containers:
 
 ```bash
@@ -45,8 +58,6 @@ if you want to starts all the services in the background (detached from your ter
 
 ### 3. Access the App
 - **Generator WebApp**: http://localhost:8080
-
-You can send image requests to the Generator, which will call the API to classify chess pieces and return FEN strings.
 
 ## 🔧 Compose Configuration
 
