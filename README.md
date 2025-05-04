@@ -76,15 +76,6 @@ networks:
     driver: bridge
 ```
 
----
-
-## Testing Locally
-You can send base64-encoded image data to the `/api/process` endpoint on port `8080`.
-
-Example using `curl`:
-```bash
-curl -X POST http://localhost:8080/api/process      -H "Content-Type: application/json"      -d "{"base64Image": "<your_base64_string_here>"}"
-```
 
 ---
 
