@@ -9,6 +9,7 @@ public static class ApiHandling
         new HttpClientHandler { ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true }
     );
     
+    private static readonly SemaphoreSlim RequestSemaphore = new(4); // Limit to 4 concurrent requests 
     // private static readonly string ApiUrl = "http://localhost:5000/predict"; //normal
     private const string ApiUrl = "http://csharp-chessfiguresclassification_api:5000/predict"; //docker
 
@@ -36,38 +37,44 @@ public static class ApiHandling
 
     public static async Task<string> PredictChessPiece(byte[] imageBytes)
     {
+        await RequestSemaphore.WaitAsync();
         try
         {
             var base64Image = Convert.ToBase64String(imageBytes);
             var requestBody = new { Base64Image = base64Image };
             var jsonRequest = JsonSerializer.Serialize(requestBody);
-    
+
             var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
             var response = await HttpClient.PostAsync(ApiUrl, content);
-    
+
             if (response.IsSuccessStatusCode)
             {
                 await using var stream = await response.Content.ReadAsStreamAsync();
                 using var doc = await JsonDocument.ParseAsync(stream);
-    
+
                 if (doc.RootElement.TryGetProperty("predictedLabel", out var predictedLabel))
                 {
                     return predictedLabel.GetString() ?? "Unknown";
                 }
-    
+
                 return "Error: Expected 'predictedLabel' in JSON response";
             }
-    
+
             return $"Error: {response.StatusCode}";
         }
         catch (Exception ex)
         {
             return $"Exception: {ex.Message}";
         }
+        finally
+        {
+            RequestSemaphore.Release();
+        }
     }
     
     public static async Task<List<(FigureType type, FigureColor color)>> PredictTopKLabels(byte[] imageBytes, int topK = 5)
     {
+        await RequestSemaphore.WaitAsync();
         try
         {
             var base64Image = Convert.ToBase64String(imageBytes);
@@ -101,6 +108,9 @@ public static class ApiHandling
         {
             return new List<(FigureType, FigureColor)>();
         }
+        finally
+        {
+            RequestSemaphore.Release();
+        }
     }
-    
 }
