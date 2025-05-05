@@ -986,7 +986,7 @@ public class Game()
             return;
         }
         
-        // if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(GameStates[1]); //delete it later
+        if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(GameStates[1]); //delete it later
         // Start from the second board and compare with the previous one
         for (int i = 2; i < GameStates.Count; i++) //first board empty
         {
@@ -994,7 +994,7 @@ public class Game()
             ChessBoard currentBoard = GameStates[i];
 
             UpdateBoardState(previousBoard, currentBoard, i, onlyGenerateNotation);
-            // if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(currentBoard); //delete it later
+            if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(currentBoard); //delete it later
         }
     }
 
