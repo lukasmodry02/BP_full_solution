@@ -213,7 +213,7 @@
         document.getElementById('upload-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // ✅ Disable drag-and-drop + checkbox
+            // Disable drag-and-drop + checkbox
             document.getElementById('drop-zone').classList.add('disabled');
             document.getElementById('sortByDate').disabled = true;
 
@@ -241,7 +241,7 @@
             }).then(async response => {
                 const html = await response.text();
 
-                // ✅ Inject response into preview area
+                // Inject response into preview area
                 const parser = new DOMParser();
                 const newDoc = parser.parseFromString(html, 'text/html');
 
@@ -260,7 +260,6 @@
                     document.getElementById('upload-form').insertAdjacentElement('afterend', errorBlock);
                 }
 
-                // ✅ Reset form
                 fileInput.value = '';
                 sortedPreviewFiles = [];
                 previewContainer.innerHTML = '';
