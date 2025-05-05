@@ -1,23 +1,31 @@
 services:
   csharp-chessfiguresclassification_api:
-    image: lukasmodry02/bp_chessgame_image_recognition:api
+    build:
+      context: .
+      dockerfile: ChessFiguresClassification_Api/Dockerfile
     container_name: csharp-chessfiguresclassification_api
     restart: unless-stopped
+    init: true
     ports:
       - "5000:5000"
     networks:
       - chessnet
 
   csharp-chessnotationsgenerator:
-    image: lukasmodry02/bp_chessgame_image_recognition:generator
+    build:
+      context: .
+      dockerfile: ChessNotationsGenerator/Dockerfile
     container_name: csharp-chessnotationsgenerator
     restart: unless-stopped
+    init: true
     ports:
       - "8080:8080"
     depends_on:
       - csharp-chessfiguresclassification_api
     networks:
       - chessnet
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
 
 networks:
   chessnet:
