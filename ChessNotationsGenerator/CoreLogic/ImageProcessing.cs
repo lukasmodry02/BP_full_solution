@@ -9,11 +9,11 @@ using MetadataExtractor.Formats.Exif;
 namespace ChessNotationsGenerator.CoreLogic;
 public static class ImageProcessing
 {
-    private static Mat LoadPicFromPath(string filePath)
-    {
-        var image = CvInvoke.Imread(filePath);
-        return image;
-    }
+    // private static Mat LoadPicFromPath(string filePath)
+    // {
+    //     var image = CvInvoke.Imread(filePath);
+    //     return image;
+    // }
     
     internal static DateTime? GetDateTaken(string imagePath)
     {
@@ -952,69 +952,69 @@ public static class ImageProcessing
     
     //expandable
     
-    private static void DisplayAndWait(Mat image, string description = "image")
-    {
-        // Calculate a scaling factor if image is larger than the screen
-        var scalingFactor = 1.0;
-        if (image.Width > Constans.MonitorWidth || image.Height > Constans.MonitorHeight)
-        {
-            var widthScaling = (double)Constans.MonitorWidth / image.Width;
-            var heightScaling = (double)Constans.MonitorHeight / image.Height;
-
-            // Use the smaller scaling factor to maintain an aspect ratio
-            scalingFactor = Math.Min(widthScaling, heightScaling);
-        }
-
-        // Resize the image if necessary
-        Mat resizedImage = new Mat();
-        if (scalingFactor < 1.0)
-        {
-            CvInvoke.Resize(image, resizedImage, new Size(
-                (int)(image.Width * scalingFactor),
-                (int)(image.Height * scalingFactor)));
-        }
-        else
-        {
-            resizedImage = image; // No resizing needed
-        }
-
-        // Display the resized image
-        CvInvoke.Imshow(description, resizedImage);
-        CvInvoke.WaitKey(0);
-    } 
-    
-    private static void VisualizeContour(Mat inputImage, VectorOfPoint contour, string windowName = "Contours")
-    {
-        Mat imageWithContour = inputImage.Clone();
-        CvInvoke.DrawContours(imageWithContour, new VectorOfVectorOfPoint(contour), -1, new MCvScalar(0, 255, 0), 5);
-        DisplayAndWait(imageWithContour);
-    }
-    
-    //will display input image if there is now lines
-    private static void VisualizeLines(Mat inputImage, LineSegment2D[] lines, string message = "Lines")
-    {
-        Mat outputImage = new Mat();
-        if (inputImage.NumberOfChannels == 1)  // Check if it's a grayscale image
-        {
-            CvInvoke.CvtColor(inputImage, outputImage, ColorConversion.Gray2Bgr);
-        }
-        else
-        {
-            outputImage = inputImage.Clone();
-        }
-
-        MCvScalar lineColor = new MCvScalar(0, 255, 0); // Green
-        int lineThickness = 2;
-
-        foreach (var line in lines)
-        {
-            CvInvoke.Line(outputImage, line.P1, line.P2, lineColor, lineThickness);
-        }
-
-        //Console.WriteLine($"Message: {message}, Number of lines: {lines.Length}");
-
-        DisplayAndWait(outputImage);
-    }
+    // private static void DisplayAndWait(Mat image, string description = "image")
+    // {
+    //     // Calculate a scaling factor if image is larger than the screen
+    //     var scalingFactor = 1.0;
+    //     if (image.Width > Constans.MonitorWidth || image.Height > Constans.MonitorHeight)
+    //     {
+    //         var widthScaling = (double)Constans.MonitorWidth / image.Width;
+    //         var heightScaling = (double)Constans.MonitorHeight / image.Height;
+    //
+    //         // Use the smaller scaling factor to maintain an aspect ratio
+    //         scalingFactor = Math.Min(widthScaling, heightScaling);
+    //     }
+    //
+    //     // Resize the image if necessary
+    //     Mat resizedImage = new Mat();
+    //     if (scalingFactor < 1.0)
+    //     {
+    //         CvInvoke.Resize(image, resizedImage, new Size(
+    //             (int)(image.Width * scalingFactor),
+    //             (int)(image.Height * scalingFactor)));
+    //     }
+    //     else
+    //     {
+    //         resizedImage = image; // No resizing needed
+    //     }
+    //
+    //     // Display the resized image
+    //     CvInvoke.Imshow(description, resizedImage);
+    //     CvInvoke.WaitKey(0);
+    // } 
+    //
+    // private static void VisualizeContour(Mat inputImage, VectorOfPoint contour, string windowName = "Contours")
+    // {
+    //     Mat imageWithContour = inputImage.Clone();
+    //     CvInvoke.DrawContours(imageWithContour, new VectorOfVectorOfPoint(contour), -1, new MCvScalar(0, 255, 0), 5);
+    //     DisplayAndWait(imageWithContour);
+    // }
+    //
+    // //will display input image if there is now lines
+    // private static void VisualizeLines(Mat inputImage, LineSegment2D[] lines, string message = "Lines")
+    // {
+    //     Mat outputImage = new Mat();
+    //     if (inputImage.NumberOfChannels == 1)  // Check if it's a grayscale image
+    //     {
+    //         CvInvoke.CvtColor(inputImage, outputImage, ColorConversion.Gray2Bgr);
+    //     }
+    //     else
+    //     {
+    //         outputImage = inputImage.Clone();
+    //     }
+    //
+    //     MCvScalar lineColor = new MCvScalar(0, 255, 0); // Green
+    //     int lineThickness = 2;
+    //
+    //     foreach (var line in lines)
+    //     {
+    //         CvInvoke.Line(outputImage, line.P1, line.P2, lineColor, lineThickness);
+    //     }
+    //
+    //     //Console.WriteLine($"Message: {message}, Number of lines: {lines.Length}");
+    //
+    //     DisplayAndWait(outputImage);
+    // }
 
 
 }

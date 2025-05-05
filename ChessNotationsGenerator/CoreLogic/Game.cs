@@ -6,7 +6,7 @@ public class Game()
     private readonly ChessNotation _chessNotation = new();
     private List<ChessBoard> GameStates { get; } = [];
     private List<string> PicPaths { get; } = [];
-    private  List<(List<(int row, int col)> position, bool isCaptured)> Promoted { get; } = []; //not implemented 
+    // private  List<(List<(int row, int col)> position, bool isCaptured)> Promoted { get; } = []; //not implemented 
 
     private List<string> GetPicPaths()
     {
@@ -70,28 +70,28 @@ public class Game()
     //     Console.WriteLine();
     // }
     //
-    public bool IsFirstBoardEmpty()
-    {
-        if (GameStates.Count < 2)
-            return false;
-
-        var counter = 0;
-        var firstBoard = GameStates[0].Squares; 
-        var secondBoard = GameStates[1].Squares;
-        for (int i = 0; i < firstBoard.GetLength(0); i++)
-        {
-            for (int j = 0; j < firstBoard.GetLength(1); j++)
-            {
-                if (firstBoard[i, j].IsOccupied != secondBoard[i, j].IsOccupied)
-                {
-                    counter++;
-                }
-            } 
-        }
-
-        Console.WriteLine($"number of different pictures: {counter}");
-        return counter < 3;
-    }
+    // public bool IsFirstBoardEmpty()
+    // {
+    //     if (GameStates.Count < 2)
+    //         return false;
+    //
+    //     var counter = 0;
+    //     var firstBoard = GameStates[0].Squares; 
+    //     var secondBoard = GameStates[1].Squares;
+    //     for (int i = 0; i < firstBoard.GetLength(0); i++)
+    //     {
+    //         for (int j = 0; j < firstBoard.GetLength(1); j++)
+    //         {
+    //             if (firstBoard[i, j].IsOccupied != secondBoard[i, j].IsOccupied)
+    //             {
+    //                 counter++;
+    //             }
+    //         } 
+    //     }
+    //
+    //     Console.WriteLine($"number of different pictures: {counter}");
+    //     return counter < 3;
+    // }
 
     public void LoadGameParallel(string gameFolder, bool sortByDateTaken = true)
     {
@@ -614,22 +614,22 @@ public class Game()
         return (FigureType.Pawn, color, row);
     }
     
-    private void UpdatePromotedRecord((int row, int col) disappearedPiecesPosition, 
-        (int row, int col) reappearedPiecesPositions, bool isCaptured)
-    {
-        for (var i = 0; i < Promoted.Count; i++)
-        {
-            var record = Promoted[i];
-            var lastPosition = record.position.Last();
-            
-            if (lastPosition == disappearedPiecesPosition)
-            {
-                record.position.Add(reappearedPiecesPositions);
-                var updatedRecord = (record.position, isCaptured);
-                Promoted[i] = updatedRecord; 
-            }
-        }
-    }
+    // private void UpdatePromotedRecord((int row, int col) disappearedPiecesPosition, 
+    //     (int row, int col) reappearedPiecesPositions, bool isCaptured)
+    // {
+    //     for (var i = 0; i < Promoted.Count; i++)
+    //     {
+    //         var record = Promoted[i];
+    //         var lastPosition = record.position.Last();
+    //         
+    //         if (lastPosition == disappearedPiecesPosition)
+    //         {
+    //             record.position.Add(reappearedPiecesPositions);
+    //             var updatedRecord = (record.position, isCaptured);
+    //             Promoted[i] = updatedRecord; 
+    //         }
+    //     }
+    // }
 
     private static void ResolveCapture((FigureType type, FigureColor color) capturingFigure,
         (int row, int col) capturedPosition,
@@ -986,7 +986,7 @@ public class Game()
             return;
         }
         
-        if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(GameStates[1]); //delete it later
+        // if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(GameStates[1]); //delete it later
         // Start from the second board and compare with the previous one
         for (int i = 2; i < GameStates.Count; i++) //first board empty
         {
@@ -994,7 +994,7 @@ public class Game()
             ChessBoard currentBoard = GameStates[i];
 
             UpdateBoardState(previousBoard, currentBoard, i, onlyGenerateNotation);
-            if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(currentBoard); //delete it later
+            // if (!onlyGenerateNotation) ConsoleDraw.DrawBoard(currentBoard); //delete it later
         }
     }
 
