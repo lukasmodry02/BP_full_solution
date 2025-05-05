@@ -9,7 +9,6 @@ public static class ApiHandling
         new HttpClientHandler { ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true }
     );
     
-    private static readonly SemaphoreSlim RequestSemaphore = new(4); // Limit to 4 concurrent requests 
     // private static readonly string ApiUrl = "http://localhost:5000/predict"; //normal
     private const string ApiUrl = "http://csharp-chessfiguresclassification_api:5000/predict"; //docker
 
@@ -37,7 +36,6 @@ public static class ApiHandling
 
     public static async Task<string> PredictChessPiece(byte[] imageBytes)
     {
-        await RequestSemaphore.WaitAsync();
         try
         {
             var base64Image = Convert.ToBase64String(imageBytes);
@@ -66,15 +64,10 @@ public static class ApiHandling
         {
             return $"Exception: {ex.Message}";
         }
-        finally
-        {
-            RequestSemaphore.Release();
-        }
     }
     
     public static async Task<List<(FigureType type, FigureColor color)>> PredictTopKLabels(byte[] imageBytes, int topK = 5)
     {
-        await RequestSemaphore.WaitAsync();
         try
         {
             var base64Image = Convert.ToBase64String(imageBytes);
@@ -107,10 +100,6 @@ public static class ApiHandling
         catch
         {
             return new List<(FigureType, FigureColor)>();
-        }
-        finally
-        {
-            RequestSemaphore.Release();
         }
     }
 }

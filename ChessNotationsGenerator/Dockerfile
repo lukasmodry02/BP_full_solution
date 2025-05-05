@@ -43,7 +43,9 @@ COPY --from=build /publish .
 
 COPY ChessNotationsGenerator/native-libs/linux-x64/libcvextern.so /app/runtimes/ubuntu.20.04-x64/native/
 
-ENV LD_LIBRARY_PATH=/app/runtimes/ubuntu.20.04-x64/native:$LD_LIBRARY_PATH
+#ENV LD_LIBRARY_PATH=/app/runtimes/ubuntu.20.04-x64/native:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH="/app/runtimes/ubuntu.20.04-x64/native:/usr/lib"
+
 
 EXPOSE 8080
 

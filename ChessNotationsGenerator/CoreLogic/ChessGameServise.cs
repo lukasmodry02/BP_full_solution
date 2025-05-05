@@ -6,13 +6,12 @@ public class ChessGameService
 
     public string GenerateNotationFromFolder(string folderPath, bool sortByDate)
     {
-        _game.LoadGameParallel(folderPath, sortByDate);
-        // if (_game.IsFirstBoardEmpty())
-        // {
-        //     return "Error: First board is not empty. Please upload a photo of an empty board as the first image.";
-        // }
+        // Run the async code synchronously
+        Task.Run(() => _game.LoadGameParallelAsync(folderPath, sortByDate)).GetAwaiter().GetResult();
+
         _game.DeterminateStartingFiguresDesignation(_game.IsGameFromBeginning());
         _game.UpdateGameStates();
         return _game.ReturnChessNotationAsString();
     }
+
 }
