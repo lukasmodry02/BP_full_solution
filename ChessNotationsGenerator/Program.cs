@@ -1,7 +1,4 @@
-using System.Diagnostics;
 using ChessNotationsGenerator.CoreLogic;
-using Emgu.CV;
-using Microsoft.AspNetCore.Http.Features;
 
 // Testing the app in the console enviroment
 // Console.OutputEncoding = System.Text.Encoding.UTF8;
