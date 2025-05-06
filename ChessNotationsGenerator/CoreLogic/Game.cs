@@ -99,27 +99,27 @@ public class Game()
             .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                            file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                            file.EndsWith(".png", StringComparison.OrdinalIgnoreCase));
-
+    
         var sortedPaths = sortByDateTaken
             ? imagePaths.OrderBy(path => ImageProcessing.GetDateTaken(path) ?? new FileInfo(path).CreationTime).ToList()
             : imagePaths.OrderBy(Path.GetFileName).ToList();
-
+    
         GameStates.Clear();
         PicPaths.Clear();
         _chessNotation.Clear();
-
+    
         if (sortedPaths.Count == 0)
         {
             Console.WriteLine("No images found in the folder.");
             return;
         }
-
+    
         // Load the first image and use it as reference
         var firstImage = CvInvoke.Imread(sortedPaths[0]);
         var emptyBoard = ImageProcessing.InitializeChessBoardFromImage(firstImage, 0);
         GameStates.Add(emptyBoard);
         PicPaths.Add(sortedPaths[0]);
-
+    
         var boardResults = new ChessBoard[sortedPaths.Count - 1];
         var pathResults = new string[sortedPaths.Count - 1];
         
@@ -135,10 +135,76 @@ public class Game()
         
         GameStates.AddRange(boardResults);
         PicPaths.AddRange(pathResults);
-
+    
         Console.WriteLine("Pictures count: " + GameStates.Count);
         Console.WriteLine();
     }
+    
+    public async Task LoadGameParallelAsync(string gameFolder, bool sortByDateTaken = true)
+{
+    var imagePaths = Directory.GetFiles(gameFolder, "*.*")
+        .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                       file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                       file.EndsWith(".png", StringComparison.OrdinalIgnoreCase));
+
+    var sortedPaths = sortByDateTaken
+        ? imagePaths.OrderBy(path => ImageProcessing.GetDateTaken(path) ?? new FileInfo(path).CreationTime).ToList()
+        : imagePaths.OrderBy(Path.GetFileName).ToList();
+
+    GameStates.Clear();
+    PicPaths.Clear();
+    _chessNotation.Clear();
+
+    if (sortedPaths.Count == 0)
+    {
+        Console.WriteLine("No images found in the folder.");
+        return;
+    }
+
+    var firstImage = CvInvoke.Imread(sortedPaths[0]);
+    var emptyBoard = ImageProcessing.InitializeChessBoardFromImage(firstImage, 0);
+    GameStates.Add(emptyBoard);
+    PicPaths.Add(sortedPaths[0]);
+
+    var semaphore = new SemaphoreSlim(4); // limit to 4 concurrent image processes
+    var tasks = new List<Task>();
+
+    var boardResults = new ChessBoard[sortedPaths.Count - 1];
+    var pathResults = new string[sortedPaths.Count - 1];
+
+    for (int i = 1; i < sortedPaths.Count; i++)
+    {
+        int index = i;
+        tasks.Add(Task.Run(async () =>
+        {
+            await semaphore.WaitAsync();
+            try
+            {
+                var image = CvInvoke.Imread(sortedPaths[index]);
+                if (image.IsEmpty) return;
+
+                var board = ImageProcessing.InitializeChessBoardFromImage(image, index, emptyBoard);
+                boardResults[index - 1] = board;
+                pathResults[index - 1] = sortedPaths[index];
+            }
+            finally
+            {
+                semaphore.Release();
+            }
+        }));
+    }
+
+    await Task.WhenAll(tasks);
+
+    GameStates.AddRange(boardResults.Where(b => true));
+    PicPaths.AddRange(pathResults.Where(p => true));
+
+    Console.WriteLine("Pictures count: " + GameStates.Count);
+    Console.WriteLine();
+}
+
+    
+    
     private static FigureType GetPieceTypeForSideRow(int row)
     {
         return row switch

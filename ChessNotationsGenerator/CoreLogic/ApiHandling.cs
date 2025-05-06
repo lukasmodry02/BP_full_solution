@@ -41,23 +41,23 @@ public static class ApiHandling
             var base64Image = Convert.ToBase64String(imageBytes);
             var requestBody = new { Base64Image = base64Image };
             var jsonRequest = JsonSerializer.Serialize(requestBody);
-    
+
             var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
             var response = await HttpClient.PostAsync(ApiUrl, content);
-    
+
             if (response.IsSuccessStatusCode)
             {
                 await using var stream = await response.Content.ReadAsStreamAsync();
                 using var doc = await JsonDocument.ParseAsync(stream);
-    
+
                 if (doc.RootElement.TryGetProperty("predictedLabel", out var predictedLabel))
                 {
                     return predictedLabel.GetString() ?? "Unknown";
                 }
-    
+
                 return "Error: Expected 'predictedLabel' in JSON response";
             }
-    
+
             return $"Error: {response.StatusCode}";
         }
         catch (Exception ex)
@@ -102,5 +102,4 @@ public static class ApiHandling
             return new List<(FigureType, FigureColor)>();
         }
     }
-    
 }

@@ -27,7 +27,7 @@
                 <div id="preview-container" class="row mt-4 g-3"></div>
 
             </form>
-
+            <div id="result-block">
             @if (ViewBag.Massage != null)
             {
                 <div class="mt-5" data-error-output>
@@ -47,6 +47,7 @@
                 </div>
 
             }
+            </div>
 
         </div>
     </div>
@@ -58,6 +59,9 @@
         width: 64px;
         height: auto;
         transition: transform 0.3s ease;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #drop-zone.drag-over .upload-icon {
@@ -209,7 +213,7 @@
         document.getElementById('upload-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // ✅ Disable drag-and-drop + checkbox
+            // Disable drag-and-drop + checkbox
             document.getElementById('drop-zone').classList.add('disabled');
             document.getElementById('sortByDate').disabled = true;
 
@@ -236,9 +240,36 @@
                 body: formData
             }).then(async response => {
                 const html = await response.text();
-                document.open();
-                document.write(html);
-                document.close();
+
+                // Inject response into preview area
+                const parser = new DOMParser();
+                const newDoc = parser.parseFromString(html, 'text/html');
+
+                const notationBlock = newDoc.querySelector('[data-notation-output]');
+                const errorBlock = newDoc.querySelector('[data-error-output]');
+
+                // Clear previous result
+                document.querySelector('[data-notation-output]')?.remove();
+                document.querySelector('[data-error-output]')?.remove();
+
+                if (notationBlock) {
+                    document.getElementById('upload-form').insertAdjacentElement('afterend', notationBlock);
+                }
+
+                if (errorBlock) {
+                    document.getElementById('upload-form').insertAdjacentElement('afterend', errorBlock);
+                }
+
+                fileInput.value = '';
+                sortedPreviewFiles = [];
+                previewContainer.innerHTML = '';
+
+                icon.style.display = 'block';
+                text.innerHTML = `<strong>Drag & drop</strong> images here or click to browse.`;
+                button.disabled = false;
+                button.innerText = "Generate Notation";
+                document.getElementById('drop-zone').classList.remove('disabled');
+                document.getElementById('sortByDate').disabled = false;
             });
         });
 
