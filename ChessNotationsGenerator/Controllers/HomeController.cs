@@ -56,6 +56,7 @@ public class HomeController(
             {
                 ViewBag.Notation = result;
             }
+
         }
         catch (Exception ex)
         {
@@ -73,7 +74,6 @@ public class HomeController(
                 logger.LogWarning($"Failed to delete temporary upload folder: {folderPath}. Error: {ex.Message}");
             }
         }
-
         return View();
     }
 

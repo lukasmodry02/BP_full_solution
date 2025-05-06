@@ -239,6 +239,10 @@
                 method: 'POST',
                 body: formData
             }).then(async response => {
+                if (!response.ok) {
+                    window.location.href = "/Home/Error";
+                    return;
+                }
                 const html = await response.text();
 
                 // Inject response into preview area

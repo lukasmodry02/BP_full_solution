@@ -10,6 +10,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 
 
+
 // Add services to the container
 builder.Services.AddScoped<ChessGameService>();
 builder.Services.AddControllersWithViews();
@@ -26,7 +27,6 @@ if (!app.Environment.IsDevelopment())
 // app.UseHttpsRedirection(); //commented for docker
 app.UseStaticFiles();   
 
-app.UseStatusCodePagesWithReExecute("/Home/Error");
 app.UseRouting();
 app.UseAuthorization();
 
