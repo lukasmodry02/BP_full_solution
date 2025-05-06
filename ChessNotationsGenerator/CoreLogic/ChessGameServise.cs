@@ -6,9 +6,7 @@ public class ChessGameService
 
     public string GenerateNotationFromFolder(string folderPath, bool sortByDate)
     {
-        // Run the async code synchronously
         Task.Run(() => _game.LoadGameParallelAsync(folderPath, sortByDate)).GetAwaiter().GetResult();
-
         _game.DeterminateStartingFiguresDesignation(_game.IsGameFromBeginning());
         _game.UpdateGameStates();
         return _game.ReturnChessNotationAsString();
