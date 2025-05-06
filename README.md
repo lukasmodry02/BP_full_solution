@@ -31,6 +31,9 @@ Then: Clone the repo.
 ```bash
 git clone https://github.com/lukasmodry02/BP_full_solution.git
 ```
+It can look like the cloning is stuck.
+It is running in the background give it a while.
+You can check it by pressing top arrow if you see your resent commands you all set!
 
 ### 2. Start the Services
 Double check if you are in the correct directory.
