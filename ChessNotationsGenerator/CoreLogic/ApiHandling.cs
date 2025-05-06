@@ -9,8 +9,8 @@ public static class ApiHandling
         new HttpClientHandler { ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true }
     );
     
-    // private static readonly string ApiUrl = "http://localhost:5000/predict"; //normal
-    private const string ApiUrl = "http://csharp-chessfiguresclassification_api:5000/predict"; //docker
+    private static readonly string ApiUrl = "http://localhost:5000/predict"; //normal
+    // private const string ApiUrl = "http://csharp-chessfiguresclassification_api:5000/predict"; //docker
 
 
     private static (FigureType, FigureColor) ParseIndexToLabel(int index)
