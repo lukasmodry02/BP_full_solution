@@ -57,6 +57,11 @@ public class HomeController(
                 ViewBag.Notation = result;
             }
         }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Unhandled exception during generation.");
+            throw;
+        }
         finally
         {
             try
