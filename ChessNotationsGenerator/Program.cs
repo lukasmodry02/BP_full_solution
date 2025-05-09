@@ -9,9 +9,6 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     serverOptions.Limits.MaxRequestBodySize = Constans.MultipartBodyLengthLimit;
 });
 
-
-
-// Add services to the container
 builder.Services.AddScoped<ChessGameService>();
 builder.Services.AddControllersWithViews();
 
